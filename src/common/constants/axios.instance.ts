@@ -33,13 +33,13 @@ $axios.interceptors.request.use(
       ? localStorage.getItem('accessToken')
       : sessionStorage.getItem('accessToken');
     if (token) {
-      config.headers['Authorization'] = 'Bearer ' + token;
+      config.headers.Authorization = `Bearer ${token}`;
     } else {
-      config.headers['Authorization'] = 'Basic aW5maW5pdGU6aW5maW5pdGVAMTIz';
+      config.headers.Authorization = 'Basic aW5maW5pdGU6aW5maW5pdGVAMTIz';
     }
     return config;
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );

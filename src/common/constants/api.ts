@@ -1,4 +1,4 @@
-import { api_error_code, $axios, API_URL } from './axios.instance';
+import { api_error_code, $axios, API_URL } from "./axios.instance";
 
 const StatusCode = api_error_code;
 
@@ -16,9 +16,9 @@ export const checkUserValidation = (data: any) => {
 
 const getApiCall = (
   endPoint: string,
-  params: string = '',
+  params = "",
   successCallback: Function,
-  errorCallback: Function
+  errorCallback: Function,
 ) => {
   $axios
     .get(API_URL + endPoint + params, {})
@@ -29,7 +29,7 @@ const getApiCall = (
       if (err?.response?.data.statusCode === 401) {
         errorCallback(err.response.data);
       }
-      if (err.code === 'ECONNABORTED') {
+      if (err.code === "ECONNABORTED") {
         errorCallback({
           data: {
             statusCode: 408,
@@ -40,8 +40,8 @@ const getApiCall = (
       } else if (!err.response) {
         errorCallback({
           data: {
-            statusCode: '',
-            message: 'Please try again later',
+            statusCode: "",
+            message: "Please try again later",
           },
         });
       }
@@ -50,9 +50,9 @@ const getApiCall = (
 
 const postApiCall = (
   endPoint: string,
-  params: string | { [key: string]: any } = '',
+  params: string | { [key: string]: any } = "",
   successCallback: Function,
-  errorCallback: Function
+  errorCallback: Function,
 ) => {
   $axios
     .post(API_URL + endPoint, params)
@@ -62,7 +62,7 @@ const postApiCall = (
     .catch((err: any) => {
       console.dir(err);
 
-      if (err.code === 'ECONNABORTED') {
+      if (err.code === "ECONNABORTED") {
         errorCallback({
           data: {
             statusCode: 408,
@@ -73,8 +73,8 @@ const postApiCall = (
       } else if (!err.response) {
         errorCallback({
           data: {
-            statusCode: '',
-            message: 'Please try again later',
+            statusCode: "",
+            message: "Please try again later",
           },
         });
       }
@@ -83,9 +83,9 @@ const postApiCall = (
 
 const putApiCall = (
   endPoint: string,
-  params: string | { [key: string]: any } = '',
+  params: string | { [key: string]: any } = "",
   successCallback: Function,
-  errorCallback: Function
+  errorCallback: Function,
 ) => {
   $axios
     .put(API_URL + endPoint, params)
@@ -93,22 +93,22 @@ const putApiCall = (
       successCallback(res);
     })
     .catch((err: any) => {
-      if (err.code === 'ECONNABORTED') {
-        console.log('econna err called');
+      if (err.code === "ECONNABORTED") {
+        console.log("econna err called");
         errorCallback({
           data: {
             statusCode: 408,
           },
         });
       } else if (err.response && !checkUserValidation(err.response.data)) {
-        console.log('2nd block called');
+        console.log("2nd block called");
         errorCallback(err.response);
       } else if (!err.response) {
-        console.log('3rd block called');
+        console.log("3rd block called");
         errorCallback({
           data: {
-            statusCode: '',
-            message: 'Please try again later',
+            statusCode: "",
+            message: "Please try again later",
           },
         });
       }
@@ -117,9 +117,9 @@ const putApiCall = (
 
 const patchApiCall = (
   endPoint: string,
-  params: string = '',
+  params = "",
   successCallback: Function,
-  errorCallback: Function
+  errorCallback: Function,
 ) => {
   $axios
     .patch(API_URL + endPoint + params, {})
@@ -127,7 +127,7 @@ const patchApiCall = (
       successCallback(res);
     })
     .catch((err: any) => {
-      if (err.code === 'ECONNABORTED') {
+      if (err.code === "ECONNABORTED") {
         errorCallback({
           data: {
             statusCode: 408,
@@ -138,8 +138,8 @@ const patchApiCall = (
       } else if (!err.response) {
         errorCallback({
           data: {
-            statusCode: '',
-            message: 'Please try again later',
+            statusCode: "",
+            message: "Please try again later",
           },
         });
       }
@@ -150,7 +150,7 @@ const deleteApiCall = (
   endPoint: string,
   params: any,
   successCallback: Function,
-  errorCallback: Function
+  errorCallback: Function,
 ) => {
   $axios
     .delete(API_URL + endPoint, params)
@@ -158,7 +158,7 @@ const deleteApiCall = (
       successCallback(res);
     })
     .catch((err: any) => {
-      if (err.code === 'ECONNABORTED') {
+      if (err.code === "ECONNABORTED") {
         errorCallback({
           data: {
             statusCode: 408,
@@ -169,8 +169,8 @@ const deleteApiCall = (
       } else if (!err.response) {
         errorCallback({
           data: {
-            statusCode: '',
-            message: 'Please try again later',
+            statusCode: "",
+            message: "Please try again later",
           },
         });
       }
